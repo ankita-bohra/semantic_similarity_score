@@ -72,11 +72,15 @@ def similarity_score(data: InputSentences):
     mean_pooled = mean_pooled.detach().numpy()
     #for i in range(0, len(mean_pooled)-1, 2):
     similarity = cosine_similarity([mean_pooled[0]], [mean_pooled[1]])
+    similarity = "%.2f" % similarity
     print(f"Cosine Similarity between text1 and text2 : {similarity}")
     
     # rounded_similarity = np.round(similarity, decimals=2).tolist()
     
-    return MyResponse(result=similarity)
+    # return MyResponse(result=similarity)
+    return{
+        "Similarity Score": similarity
+    }
     
 
 #5. Run the API with uvicorn
